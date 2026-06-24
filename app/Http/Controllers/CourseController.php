@@ -56,34 +56,29 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Course $course)
+    public function update(Request $request, Course $course)
     {
-        $validated = request()->validate([
-
-            'name' => ['required', 'string'],
+        $validated = $request->validate([
+            'name' => ['sometimes', 'string'],
             'code' => ['nullable', 'string'],
             'instructor' => ['nullable', 'string'],
-            'credits' => ['required', 'numeric'],
-            'color' => ['required', 'string'],
-            'semester' => ['required', 'string'],
-            'status' => ['required', 'in:active,completed'],
+            'credits' => ['sometimes', 'numeric'],
+            'color' => ['sometimes', 'string'],
+            'semester' => ['sometimes', 'string'],
+            'status' => ['sometimes', 'in:active,completed'],
             'grade' => ['nullable', 'string'],
         ]);
 
-        $course = Course::update([
-            ...$validated,
-            'user_id' => request()->user()->id,
-        ]);
-        return response()->json($course, 201);
+        $course->update($validated);
+
+        return response()->json($course->fresh());
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

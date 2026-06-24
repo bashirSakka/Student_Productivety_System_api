@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->string('course_tag');
+            $table->string('course_tag')->nullable();
             $table->longText('content')->nullable();
             $table->boolean('pinned')->default(false);
             $table->timestamps();

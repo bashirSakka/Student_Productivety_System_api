@@ -26,10 +26,12 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
+
             'title' => ['required', 'string'],
             'content' => ['nullable', 'string'],
-            'course_id' => ['nullable', 'exists:courses,id'],
+            'course_tag' => ['nullable', 'string'],
             'pinned' => ['boolean'],
         ]);
 
@@ -40,6 +42,7 @@ class NoteController extends Controller
 
         return response()->json($note, 201);
     }
+
 
     /**
      * Display the specified resource.
@@ -63,10 +66,10 @@ class NoteController extends Controller
     public function update(Request $request, Note $note)
     {
         $validated = $request->validate([
-            'title'      => ['sometimes', 'string'],
-            'content'    => ['nullable', 'string'],
+            'title' => ['sometimes', 'string'],
+            'content' => ['nullable', 'string'],
             'course_tag' => ['nullable', 'string'],
-            'pinned'     => ['nullable', 'boolean'],
+            'pinned' => ['nullable', 'boolean'],
         ]);
 
         $note->update($validated);
@@ -79,6 +82,9 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
+        $note->delete();
+        return response()->json([
+            'message' => 'Note deleted'
+        ]);
     }
 }
