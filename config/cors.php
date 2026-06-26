@@ -5,7 +5,7 @@ return [
     'allowed_methods' => ['*'],
     'allowed_origins' => [
         'http://localhost:5173',
-        'https://student-productivety-system-21s4mtsea-bashirsakkas-projects.vercel.app',
+        'https://student-productivety-system-1vfnqxazg-bashirsakkas-projects.vercel.app',
     ],
     'allowed_origins_patterns' => ['#^https://.*\.vercel\.app$#'],
     'allowed_headers' => ['*'],
