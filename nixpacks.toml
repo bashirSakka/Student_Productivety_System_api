@@ -1,3 +1,6 @@
+[variables]
+NIXPACKS_PHP_VERSION = "8.4"
+
 [phases.setup]
 nixPkgs = ["php", "phpExtensions.pdo_mysql", "phpExtensions.mbstring", "phpExtensions.xml", "phpExtensions.curl", "phpExtensions.tokenizer", "phpExtensions.ctype", "phpExtensions.fileinfo"]
 
